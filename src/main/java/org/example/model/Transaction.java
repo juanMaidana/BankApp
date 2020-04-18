@@ -29,4 +29,10 @@ public class Transaction {
     public TransactionType getType(){
         return this.type;
     }
+    public int getId(){
+        return id;
+    }
+    public LocalDateTime getDateTime(){
+        return dateTime;
+    }
 }

@@ -4,6 +4,8 @@ import org.example.controller.BankAccountController;
 import org.example.controller.ControllerManager;
 import org.example.controller.OwnerController;
 import org.example.model.Account;
+import org.example.model.Transaction;
+import org.example.model.TransactionType;
 
 import java.util.List;
 import java.util.Scanner;
@@ -75,11 +77,16 @@ public class ConsoleApp {
                         closeApp = true;
                         break;
                     case 'B':
-                        //print("My Balance is ...");
-                        print("My Balance is: " + (myBalance(accountId)));
+                        print("Your Balance is: " + (myBalance(accountId)));
                         break;
                     case 'W':
                         withdraw(scanner, accountId);
+                        break;
+                    case 'D':
+                        deposit(scanner, accountId);
+                        break;
+                    case 'T':
+                        myTransactions(accountId);
                         break;
                     default:
                         print(option + " is an invalid option");
@@ -108,7 +115,28 @@ public class ConsoleApp {
     }
 
     private double myBalance(int accountId){
-        System.out.print("Your balance is: ");
         return bankAccountController.getMyBalance(accountId);
+    }
+
+    private void deposit(Scanner scanner, int accountId){
+        System.out.print("Enter amount you want to deposit: ");
+        double amount = scanner.nextDouble();
+        bankAccountController.deposit(accountId, amount);
+        System.out.println("successful deposit operation");
+    }
+
+    private void myTransactions(int accountId){
+        List<Transaction> transactions = bankAccountController.getMyTransactions(accountId);
+        print("***********************************************");
+        for (Transaction i : transactions) {
+            print("-------------------------------------");
+            print("Transaction id: "+ String.valueOf(i.getId()));
+            print("Account id: "+ String.valueOf(i.getAccountId()));
+            print("Amount: "+ String.valueOf(i.getAmount()));
+            print("Transaction date: "+ String.valueOf(i.getDateTime()));
+            print("Transaction type: "+ String.valueOf(i.getType()));
+            print("-------------------------------------");
+        }
+        print("***********************************************");
     }
 }
