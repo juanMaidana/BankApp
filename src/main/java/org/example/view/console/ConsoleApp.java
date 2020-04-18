@@ -75,7 +75,8 @@ public class ConsoleApp {
                         closeApp = true;
                         break;
                     case 'B':
-                        print("My Balance is ...");
+                        //print("My Balance is ...");
+                        print("My Balance is: " + (myBalance(accountId)));
                         break;
                     case 'W':
                         withdraw(scanner, accountId);
@@ -104,5 +105,10 @@ public class ConsoleApp {
         double amount = scanner.nextDouble();
         bankAccountController.withdraw(accountId, amount);
         System.out.println("successful withdraw operation");
+    }
+
+    private double myBalance(int accountId){
+        System.out.print("Your balance is: ");
+        return bankAccountController.getMyBalance(accountId);
     }
 }

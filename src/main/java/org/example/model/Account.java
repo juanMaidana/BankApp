@@ -2,6 +2,7 @@ package org.example.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Account {
     private int id;
@@ -24,5 +25,8 @@ public class Account {
 
     public String getOwnerId() {
         return ownerId;
+    }
+    public List<Transaction> getTransactions(){
+        return transactions;
     }
 }

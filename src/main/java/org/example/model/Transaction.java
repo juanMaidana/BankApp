@@ -21,4 +21,12 @@ public class Transaction {
     public int getAccountId() {
         return accountId;
     }
+
+    public double getAmount(){
+        return this.amount;
+    }
+
+    public TransactionType getType(){
+        return this.type;
+    }
 }
